@@ -24,17 +24,20 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserEntity signUp(UserEntity user) {
-		AccountEntity account=new AccountEntity(0,50000);
-		user.setAccount_number_ref(account);
-		AuditLogsEntity auditLogs = new AuditLogsEntity();
-		auditLogs.setDesc("user registered successfully");
-		auditLogs.setEndpoint("signUp");
-		auditLogs.setRole("user");
-		auditLogs.setTime_stamp(LocalDateTime.now());
-//		UserEntity u =userDao.save(user);
-		auditLogs.setRole_id(user.getUser_id());
-		auditLogsDao.save(auditLogs);
-		return userDao.save(user);
+		 AccountEntity account = new AccountEntity(0, 50000);
+		    user.setAccount_number_ref(account);
+		    
+		    UserEntity u=userDao.save(user);
+		    
+		    AuditLogsEntity auditLogs = new AuditLogsEntity();
+		    auditLogs.setDesc("user registered successfully");
+		    auditLogs.setEndpoint("signUp");
+		    auditLogs.setRole("user");		 
+		    auditLogs.setRole_id(u.getUser_id());
+		    auditLogs.setTime_stamp(LocalDateTime.now());
+		    auditLogsDao.save(auditLogs);
+
+		    return u;
 	}
 
 }
