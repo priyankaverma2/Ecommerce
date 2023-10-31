@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.npci.entity.UserEntity;
+import com.npci.exceptions.UserAlreadyExist;
 import com.npci.service.UserService;
 
 @RestController
@@ -20,7 +21,13 @@ public class UserController {
 	
 	@PostMapping(path="/signUp")
 	public ResponseEntity<Object> signUp(@RequestBody UserEntity user){
-		return ResponseEntity.status(201).body(userService.signUp(user));
+		try {
+			return ResponseEntity.status(201).body(userService.signUp(user));
+		} catch (UserAlreadyExist e) {
+			
+			System.err.println(e.getMessage());
+			return ResponseEntity.status(409).body(e.getMessage());
+		}
 	}
 	
 
