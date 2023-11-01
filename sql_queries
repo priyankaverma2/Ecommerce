@@ -89,7 +89,7 @@ CREATE TABLE tickets (
     time_stamp TIMESTAMP NOT NULL,
     description VARCHAR(255) NOT NULL,
     status BOOLEAN NOT NULL,
-    approved_by_ref INT NOT NULL,
+    approved_by_ref INT,
     PRIMARY KEY (ticket_id),
     FOREIGN KEY (user_id_ref) REFERENCES user(user_id),
     FOREIGN KEY (approved_by_ref) REFERENCES employee(employee_id)
