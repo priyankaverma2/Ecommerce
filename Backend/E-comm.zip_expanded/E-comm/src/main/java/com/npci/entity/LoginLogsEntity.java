@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "login_logs")
+
 public class LoginLogsEntity {
 
 	@Column(name = "log_id")
@@ -32,18 +33,6 @@ public class LoginLogsEntity {
 	@Column(name = "time_stamp")
 	private LocalDateTime time_stamp;
 
-	public LoginLogsEntity() {
-		super();
-	}
-
-	public LoginLogsEntity(int log_id, String desc, String role, int role_id, LocalDateTime time_stamp) {
-		super();
-		this.log_id = log_id;
-		this.desc = desc;
-		this.role = role;
-		this.role_id = role_id;
-		this.time_stamp = time_stamp;
-	}
 
 	public int getLog_id() {
 		return log_id;
@@ -77,6 +66,7 @@ public class LoginLogsEntity {
 		this.role_id = role_id;
 	}
 
+
 	public LocalDateTime getTime_stamp() {
 		return time_stamp;
 	}
@@ -85,11 +75,30 @@ public class LoginLogsEntity {
 		this.time_stamp = time_stamp;
 	}
 
+
+  
+
+	public LoginLogsEntity(int log_id, String desc, String role, int role_id, LocalDateTime time_stamp) {
+		super();
+		this.log_id = log_id;
+		this.desc = desc;
+		this.role = role;
+		this.role_id = role_id;
+		this.time_stamp = time_stamp;
+	}
+
+	public LoginLogsEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Override
 	public String toString() {
 		return "LoginLogsEntity [log_id=" + log_id + ", desc=" + desc + ", role=" + role + ", role_id=" + role_id
 				+ ", time_stamp=" + time_stamp + "]";
 	}
 	
+
 	
 }

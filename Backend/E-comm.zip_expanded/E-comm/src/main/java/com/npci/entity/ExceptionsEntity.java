@@ -25,7 +25,9 @@ public class ExceptionsEntity {
 	@Column(name = "name")
 	private String name;
 	
+
 	@Column(name = "description ")
+
 	private String desc;
 	
 	@Column(name = "role")
@@ -39,6 +41,7 @@ public class ExceptionsEntity {
 	
 	@Column(name = "time_stamp")
 	private LocalDateTime time_stamp;
+
 
 	public ExceptionsEntity() {
 		super();
@@ -55,6 +58,7 @@ public class ExceptionsEntity {
 		this.endpoint = endpoint;
 		this.time_stamp = time_stamp;
 	}
+
 
 	public int getException_id() {
 		return exception_id;
@@ -85,6 +89,7 @@ public class ExceptionsEntity {
 	}
 
 	public void setRole(String role) {
+
 		this.role = role;
 	}
 
@@ -112,11 +117,13 @@ public class ExceptionsEntity {
 		this.time_stamp = time_stamp;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ExceptionsEntity [exception_id=" + exception_id + ", name=" + name + ", desc=" + desc + ", role=" + role
 				+ ", role_id=" + role_id + ", endpoint=" + endpoint + ", time_stamp=" + time_stamp + "]";
 	}
+
 	
 	
 }

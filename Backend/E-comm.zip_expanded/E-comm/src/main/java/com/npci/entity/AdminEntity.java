@@ -26,6 +26,7 @@ public class AdminEntity {
 	@Column(name = "password")
 	private String password;
 
+
 	public AdminEntity(int admin_id, String email, String name, String password) {
 		super();
 		this.admin_id = admin_id;
@@ -38,6 +39,7 @@ public class AdminEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public int getAdmin_id() {
 		return admin_id;
@@ -55,11 +57,13 @@ public class AdminEntity {
 		this.email = email;
 	}
 
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
+
 		this.name = name;
 	}
 
@@ -69,6 +73,12 @@ public class AdminEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "AdminEntity [admin_id=" + admin_id + ", email=" + email + ", name=" + name + ", password=" + password
+				+ "]";
 	}
 
 	

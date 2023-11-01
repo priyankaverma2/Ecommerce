@@ -34,6 +34,7 @@ public class AuditLogsEntity {
 	private String endpoint;
 	
 	@Column(name = "time_stamp")
+
 	private LocalDateTime time_stamp;
 
 	public AuditLogsEntity() {
@@ -50,6 +51,7 @@ public class AuditLogsEntity {
 		this.endpoint = endpoint;
 		this.time_stamp = time_stamp;
 	}
+
 
 	public int getAudit_log_id() {
 		return audit_log_id;
@@ -91,6 +93,7 @@ public class AuditLogsEntity {
 		this.endpoint = endpoint;
 	}
 
+
 	public LocalDateTime getTime_stamp() {
 		return time_stamp;
 	}
@@ -99,11 +102,13 @@ public class AuditLogsEntity {
 		this.time_stamp = time_stamp;
 	}
 
+
 	@Override
 	public String toString() {
 		return "AuditLogsEntity [audit_log_id=" + audit_log_id + ", desc=" + desc + ", role=" + role + ", role_id="
 				+ role_id + ", endpoint=" + endpoint + ", time_stamp=" + time_stamp + "]";
 	}
+
 	
 	
 }

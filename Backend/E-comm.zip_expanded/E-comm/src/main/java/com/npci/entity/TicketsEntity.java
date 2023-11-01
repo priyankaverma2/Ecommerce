@@ -27,7 +27,9 @@ public class TicketsEntity {
 	private LocalDateTime time_stamp;
 	
 	@Column(name = "description")
+
 	private String desc;
+
 	
 	@Column(name = "status")
 	private int status;
@@ -42,14 +44,18 @@ public class TicketsEntity {
 
 	public TicketsEntity() {
 		super();
+
 	}
 
 	public TicketsEntity(int ticket_id, LocalDateTime time_stamp, String desc, int status, UserEntity user_id_ref,
+
 			EmployeeEntity approved_by_ref) {
 		super();
 		this.ticket_id = ticket_id;
 		this.time_stamp = time_stamp;
+
 		this.desc = desc;
+
 		this.status = status;
 		this.user_id_ref = user_id_ref;
 		this.approved_by_ref = approved_by_ref;
@@ -84,6 +90,7 @@ public class TicketsEntity {
 	}
 
 	public void setStatus(int status) {
+
 		this.status = status;
 	}
 
@@ -108,6 +115,7 @@ public class TicketsEntity {
 		return "TicketsEntity [ticket_id=" + ticket_id + ", time_stamp=" + time_stamp + ", desc=" + desc + ", status="
 				+ status + ", user_id_ref=" + user_id_ref + ", approved_by_ref=" + approved_by_ref + "]";
 	}
+
 	
 	
 
