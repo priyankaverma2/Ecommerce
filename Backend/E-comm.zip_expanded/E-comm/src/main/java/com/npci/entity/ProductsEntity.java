@@ -22,10 +22,12 @@ public class ProductsEntity {
 	private String name;
 	
 	@Column(name = "quantity")
+
 	private int quantity;
 	
 	@Column(name = "description")
 	private String description;
+
 	
 	@Column(name = "amount")
 	private double amount;
@@ -35,26 +37,22 @@ public class ProductsEntity {
 	
 	@Column(name = "image_url")
 	private String image_url;
-	
-	@Column(name = "category")
-	private String category;
-
-	public ProductsEntity(int product_id, String name, int quantity, String description, double amount, boolean status,
-			String image_url, String category) {
-		super();
-		this.product_id = product_id;
-		this.name = name;
-		this.quantity = quantity;
-		this.description = description;
-		this.amount = amount;
-		this.status = status;
-		this.image_url = image_url;
-		this.category = category;
-	}
 
 	public ProductsEntity() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public ProductsEntity(int product_id, String name, Integer quantity, String desc, String amount, int status,
+			String image_url) {
+		super();
+		this.product_id = product_id;
+		this.name = name;
+		this.quantity = quantity;
+		this.desc = desc;
+		this.amount = amount;
+		this.status = status;
+		this.image_url = image_url;
 	}
 
 	public int getProduct_id() {
@@ -73,35 +71,35 @@ public class ProductsEntity {
 		this.name = name;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
-	public double getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public boolean isStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -113,12 +111,13 @@ public class ProductsEntity {
 		this.image_url = image_url;
 	}
 
-	public String getCategory() {
-		return category;
+	@Override
+	public String toString() {
+		return "ProductsEntity [product_id=" + product_id + ", name=" + name + ", quantity=" + quantity + ", desc="
+				+ desc + ", amount=" + amount + ", status=" + status + ", image_url=" + image_url + "]";
 	}
+	
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
 
-}
+	
+	

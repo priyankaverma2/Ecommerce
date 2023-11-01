@@ -8,8 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
+
 @Table(name ="employee")
+
 public class EmployeeEntity {
 
 	@Column(name = "employee_id")
@@ -25,6 +26,7 @@ public class EmployeeEntity {
 	
 	@Column(name = "password")
 	private String password;
+
 
 	public EmployeeEntity(int employee_id, String email, String name, String password) {
 		super();
@@ -70,6 +72,13 @@ public class EmployeeEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [employee_id=" + employee_id + ", email=" + email + ", name=" + name + ", password="
+				+ password + "]";
+	}
+
 	
 	
 }

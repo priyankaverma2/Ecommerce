@@ -11,6 +11,7 @@ import lombok.Data;
 
 @Entity
 @Table(name = "account")
+
 public class AccountEntity {
 	
 	@Column(name = "account_number")
@@ -51,6 +52,35 @@ public class AccountEntity {
 	public String toString() {
 		return "AccountEntity [account_number=" + account_number + ", amount=" + amount + "]";
 	}
+	
+
+	public int getAccount_number() {
+		return account_number;
+	}
+
+	public void setAccount_number(int account_number) {
+		this.account_number = account_number;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public AccountEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "AccountEntity [account_number=" + account_number + ", amount=" + amount + "]";
+	}
+	
+	
 	
 
 }

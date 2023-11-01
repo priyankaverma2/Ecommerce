@@ -17,7 +17,7 @@ import lombok.Data;
 
 @Entity
 @Table(name = "orders")
-@Data
+
 public class OrdersEntity {
 
 	@Column(name = "order_id")
@@ -51,6 +51,7 @@ public class OrdersEntity {
 		this.user_id_ref = user_id_ref;
 	}
 
+
 	public int getOrder_id() {
 		return order_id;
 	}
@@ -59,11 +60,13 @@ public class OrdersEntity {
 		this.order_id = order_id;
 	}
 
+
 	public LocalDateTime getTime_stamp() {
 		return time_stamp;
 	}
 
 	public void setTime_stamp(LocalDateTime time_stamp) {
+
 		this.time_stamp = time_stamp;
 	}
 
@@ -74,6 +77,7 @@ public class OrdersEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 	public double getAmount() {
 		return amount;
@@ -96,6 +100,7 @@ public class OrdersEntity {
 		return "OrdersEntity [order_id=" + order_id + ", time_stamp=" + time_stamp + ", status=" + status + ", amount="
 				+ amount + ", user_id_ref=" + user_id_ref + "]";
 	}
+
 	
 	
 }
