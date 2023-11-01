@@ -1,28 +1,28 @@
 package com.npci.exceptions;
 
-public class UserNotFound extends Exception {
+public class NotFound extends Exception {
 
-	public UserNotFound() {
+	public NotFound() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserNotFound(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public NotFound(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserNotFound(String message, Throwable cause) {
+	public NotFound(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserNotFound(String message) {
+	public NotFound(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserNotFound(Throwable cause) {
+	public NotFound(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

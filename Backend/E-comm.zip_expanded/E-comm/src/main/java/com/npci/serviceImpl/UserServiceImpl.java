@@ -1,6 +1,7 @@
 package com.npci.serviceImpl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.npci.dao.AuditLogsDao;
 import com.npci.dao.CartDao;
 import com.npci.dao.ExceptionDao;
 import com.npci.dao.LoginLogsDao;
+import com.npci.dao.OrdersDao;
 import com.npci.dao.ProductDao;
 import com.npci.dao.TicketsDao;
 import com.npci.dao.UserDao;
@@ -18,11 +20,12 @@ import com.npci.entity.AuditLogsEntity;
 import com.npci.entity.CartEntity;
 import com.npci.entity.ExceptionsEntity;
 import com.npci.entity.LoginLogsEntity;
+import com.npci.entity.OrdersEntity;
 import com.npci.entity.ProductsEntity;
 import com.npci.entity.TicketsEntity;
 import com.npci.entity.UserEntity;
 import com.npci.exceptions.UserAlreadyExist;
-import com.npci.exceptions.UserNotFound;
+import com.npci.exceptions.NotFound;
 import com.npci.service.UserService;
 
 @Service
@@ -43,9 +46,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private CartDao cartDao;
-	@Autowired
 	
+	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private OrdersDao ordersDao;
 	
 	@Override
 	public UserEntity signUp(UserEntity user) throws UserAlreadyExist {
@@ -83,11 +89,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity login(Map<String, String> credentials) throws UserNotFound {
+	public UserEntity login(Map<String, String> credentials) throws NotFound {
 		ExceptionsEntity e = new ExceptionsEntity();
 		e.setEndpoint("user/login");
 		e.setRole(UserEntity.class.getSimpleName());
-		e.setName(UserNotFound.class.getSimpleName());
+		e.setName(NotFound.class.getSimpleName());
 		e.setRole_id(0);
 		e.setTime_stamp(LocalDateTime.now());
 		
@@ -104,7 +110,7 @@ public class UserServiceImpl implements UserService {
 			
 			e.setDesc("Login Credentials null!");
 			exceptionDao.save(e);
-			throw new UserNotFound("Login Credentials null!");
+			throw new NotFound("Login Credentials null!");
 		}
 
 		String email = credentials.get("email");
@@ -119,7 +125,7 @@ public class UserServiceImpl implements UserService {
 			
 			e.setDesc("User with " + email + " doesn't exist");
 			exceptionDao.save(e);
-			throw new UserNotFound("User not found with email " + email);
+			throw new NotFound("User not found with email " + email);
 		}
 		if ( user.getLogin_counter()<=3) {
 			if(user.getPassword().equals(password) && user.getStatus()==1) {
@@ -137,7 +143,7 @@ public class UserServiceImpl implements UserService {
 				
 				e.setDesc("Invalid password for " + user.getEmail());
 				exceptionDao.save(e);
-				throw new UserNotFound("Invalid Password!");
+				throw new NotFound("Invalid Password!");
 			}
 		}else {
 			loginLogs.setRole_id(user.getUser_id());
@@ -147,13 +153,13 @@ public class UserServiceImpl implements UserService {
 			userDao.save(user);
 			e.setDesc("Account locked for user "+user.getUser_id());
 			exceptionDao.save(e);
-			throw new UserNotFound("Account locked for user "+user.getUser_id());
+			throw new NotFound("Account locked for user "+user.getUser_id());
 		}
 		
 	}
 
 	@Override
-	public TicketsEntity raiseTicket( Map<String, String> ticket) throws UserNotFound {
+	public TicketsEntity raiseTicket( Map<String, String> ticket) throws NotFound {
 		
 		String email=ticket.get("email");
 		String desc=ticket.get("desc");
@@ -167,12 +173,12 @@ public class UserServiceImpl implements UserService {
 			tickets.setUser_id_ref(checkUser);
 			return ticketDao.save(tickets);
 		}
-		throw new UserNotFound("User not found with email " + email);
+		throw new NotFound("User not found with email " + email);
 		
 	}
 
 	@Override
-	public UserEntity editProfile(UserEntity user) throws UserNotFound {
+	public UserEntity editProfile(UserEntity user) throws NotFound {
 		UserEntity newUser=userDao.findByEmail(user.getEmail());
 		if(newUser!=null) {
 			newUser.setAddress(user.getAddress());
@@ -184,14 +190,14 @@ public class UserServiceImpl implements UserService {
 			newUser.setPhone(user.getPhone());
 			return userDao.save(newUser);
 		}
-		throw new UserNotFound("User not found with email " + user.getEmail());
+		throw new NotFound("User not found with email " + user.getEmail());
 	}
 
 	@Override
-	public UserEntity funds(Map<String, String> userfund) throws UserNotFound {
+	public UserEntity funds(Map<String, String> userfund) throws NotFound {
 		UserEntity user=userDao.findByEmail(userfund.get("email"));
 		if(user==null) {
-			throw new UserNotFound("User not found with email " + userfund.get("email"));
+			throw new NotFound("User not found with email " + userfund.get("email"));
 		}
 		
 		if (user.getAccount_number_ref().getAmount() > Double.parseDouble(userfund.get("fund"))) {
@@ -201,14 +207,14 @@ public class UserServiceImpl implements UserService {
 			user.setFunds(balanceFund);
 			return userDao.save(user);
 		} else {
-			throw new UserNotFound("Insufficient Balance!");
+			throw new NotFound("Insufficient Balance!");
 		}
 		
 		
 	}
 
 	@Override
-	public CartEntity addToCart(Map<String, String> cartitem) throws UserNotFound {
+	public CartEntity addToCart(Map<String, String> cartitem) throws NotFound {
 		String email=cartitem.get("email");
 		int productId=Integer.parseInt(cartitem.get("productId"));
 		UserEntity newUser=userDao.findByEmail(email);
@@ -220,10 +226,62 @@ public class UserServiceImpl implements UserService {
 			cart.setProduct_id_ref(product);
 			return cartDao.save(cart);
 			}else {
-				throw new UserNotFound("Product not found with id " + productId);
+				throw new NotFound("Product not found with id " + productId);
 			}
 		}
-		throw new UserNotFound("User not found with email " + email);
+		throw new NotFound("User not found with email " + email);
 	}
+
+	@Override
+	public String deleteFromCart(int cardId, int productId) throws NotFound {
+		
+
+		cartDao.deleteCartItem(cardId, productId);
+
+		return "Deleted Successfully";
+	}
+
+	@Override
+	public List<CartEntity> showCart(int userId) throws NotFound {
+		List<CartEntity> list=cartDao.showCart(userId);
+		return list;
+	}
+	
+	@Override
+	public OrdersEntity checkout(int userId) throws NotFound {
+	    List<CartEntity> list = cartDao.showCart(userId);
+	    UserEntity user = userDao.findById(userId).orElseThrow(() -> new NotFound("User not found"));
+	    int price = 0;
+
+	    for (CartEntity cartEntity : list) {
+	        price += cartEntity.getProduct_id_ref().getAmount();
+	        cartDao.deleteCartItem(cartEntity.getCart_id(),cartEntity.getProduct_id_ref().getProduct_id());
+	    }
+
+	  
+	    user = userDao.save(user);
+	    if(user.getFunds()>price) {
+	    	int bal=user.getFunds()-price;
+	    	user.setFunds(bal);
+	    	userDao.save(user);
+	    	
+	    OrdersEntity order = new OrdersEntity();
+	    order.setAmount(price);
+	    order.setStatus("placed");
+	    order.setTime_stamp(LocalDateTime.now());
+	    order.setUser_id_ref(userId);
+
+	    return ordersDao.save(order);
+	    
+	}
+	throw new NotFound("Insufficient Amount in funds");
+	}
+
+	@Override
+	public List<OrdersEntity> orders(int userId) throws NotFound {
+		
+		return ordersDao.orders(userId);
+	}
+
 
 }
