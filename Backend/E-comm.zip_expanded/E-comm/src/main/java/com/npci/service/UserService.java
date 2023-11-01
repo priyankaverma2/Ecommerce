@@ -2,6 +2,7 @@ package com.npci.service;
 
 import java.util.Map;
 
+import com.npci.entity.CartEntity;
 import com.npci.entity.TicketsEntity;
 import com.npci.entity.UserEntity;
 import com.npci.exceptions.UserAlreadyExist;
@@ -18,5 +19,7 @@ public interface UserService {
 	public UserEntity editProfile(UserEntity user) throws UserNotFound;
 
 	public UserEntity funds(Map<String, String> userfund) throws UserNotFound;
+
+	public CartEntity addToCart(Map<String, String> cartitem) throws UserNotFound;
 
 }
