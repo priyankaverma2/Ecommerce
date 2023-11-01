@@ -144,9 +144,10 @@ public class AdminServiceImpl implements AdminService{
 
 	}
 
+	//generate reports
 	@Override
 	public void generateReports() {
-	
+		// TODO Auto-generated method stub
 	}
 
 }
