@@ -25,7 +25,6 @@ import com.npci.service.UserService;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
-
 	@Autowired
 	private AuditLogsDao auditLogsDao;
 	
