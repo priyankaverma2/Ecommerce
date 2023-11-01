@@ -1,0 +1,11 @@
+.navbar-position{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 3;
+}
+.modal-dialog2 {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1000px;
+}
