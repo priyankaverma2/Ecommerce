@@ -255,6 +255,11 @@ public class UserServiceImpl implements UserService {
 
 	    for (CartEntity cartEntity : list) {
 	        price += cartEntity.getProduct_id_ref().getAmount();
+	        int productId=cartEntity.getProduct_id_ref().getProduct_id();
+	        ProductsEntity product =productDao.findById(productId).get();
+	       int remaining= product.getQuantity()-1;
+	       product.setQuantity(remaining);
+	       productDao.save(product);
 	        cartDao.deleteCartItem(cartEntity.getCart_id(),cartEntity.getProduct_id_ref().getProduct_id());
 	    }
 
