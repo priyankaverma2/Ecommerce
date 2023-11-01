@@ -7,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.npci.dao.AuditLogsDao;
+import com.npci.dao.CartDao;
 import com.npci.dao.ExceptionDao;
 import com.npci.dao.LoginLogsDao;
+import com.npci.dao.ProductDao;
 import com.npci.dao.TicketsDao;
 import com.npci.dao.UserDao;
 import com.npci.entity.AccountEntity;
 import com.npci.entity.AuditLogsEntity;
+import com.npci.entity.CartEntity;
 import com.npci.entity.ExceptionsEntity;
 import com.npci.entity.LoginLogsEntity;
+import com.npci.entity.ProductsEntity;
 import com.npci.entity.TicketsEntity;
 import com.npci.entity.UserEntity;
 import com.npci.exceptions.UserAlreadyExist;
@@ -36,6 +40,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private TicketsDao ticketDao;
+	
+	@Autowired
+	private CartDao cartDao;
+	@Autowired
+	
+	private ProductDao productDao;
 	
 	@Override
 	public UserEntity signUp(UserEntity user) throws UserAlreadyExist {
@@ -195,6 +205,25 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		
+	}
+
+	@Override
+	public CartEntity addToCart(Map<String, String> cartitem) throws UserNotFound {
+		String email=cartitem.get("email");
+		int productId=Integer.parseInt(cartitem.get("productId"));
+		UserEntity newUser=userDao.findByEmail(email);
+		ProductsEntity product=productDao.findById(productId).get();
+		if(newUser!=null) {
+			if(product !=null) {
+			CartEntity cart=new CartEntity();
+			cart.setUser_id_ref(newUser);
+			cart.setProduct_id_ref(product);
+			return cartDao.save(cart);
+			}else {
+				throw new UserNotFound("Product not found with id " + productId);
+			}
+		}
+		throw new UserNotFound("User not found with email " + email);
 	}
 
 }

@@ -74,4 +74,14 @@ public class UserController {
 			return ResponseEntity.status(404).body(e.getMessage());
 		}
 	}
+	@PostMapping(path="/addToCart")
+	public ResponseEntity<Object> addToCart(@RequestBody Map<String, String> cartitem ){
+		try {
+			return ResponseEntity.status(200).body(userService.addToCart(cartitem));
+		} catch (UserNotFound e) {
+			
+			System.err.println(e.getMessage());
+			return ResponseEntity.status(404).body(e.getMessage());
+		}
+	}
 }
