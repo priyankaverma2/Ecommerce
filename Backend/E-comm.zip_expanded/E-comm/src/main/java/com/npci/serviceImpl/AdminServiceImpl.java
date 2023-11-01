@@ -149,10 +149,4 @@ public class AdminServiceImpl implements AdminService{
 	
 	}
 
-	// admin-logout
-	@Override
-	public void logout() {
-		// TODO Auto-generated method stub
-
-	}
 }

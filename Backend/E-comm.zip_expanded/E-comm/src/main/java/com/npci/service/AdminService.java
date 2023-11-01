@@ -23,6 +23,5 @@ public interface AdminService {
 	boolean deleteEmployeeById(int employee_id) throws EmployeeNotFoundException;
 	void viewRequests();
 	void generateReports();
-	void logout();
 
 }

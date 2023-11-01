@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.npci.exceptions.EmployeeNotFoundException;
 import com.npci.exceptions.ProductIDNotFoundException;
 import com.npci.service.AdminService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
@@ -48,7 +50,7 @@ public class AdminController {
 		} catch (AdminNotFoundException e) {
 			Map<String, String> map = new HashMap<>();
 			map.put("error", e.getMessage());
-			return ResponseEntity.status(404).body(map);
+			return ResponseEntity.status(200).body(map);
 		}
 	}
 
@@ -69,7 +71,7 @@ public class AdminController {
 		} catch (ProductIDNotFoundException e) {
 			Map<String, String> map = new HashMap<>();
 			map.put("error", e.getMessage());
-			return ResponseEntity.status(404).body(map);
+			return ResponseEntity.status(200).body(map);
 		}
 
 	}
@@ -97,7 +99,7 @@ public class AdminController {
 		} catch (EmployeeNotFoundException e) {
 			Map<String, String> map = new HashMap<>();
 			map.put("error", e.getMessage());
-			return ResponseEntity.status(404).body(map);
+			return ResponseEntity.status(200).body(map);
 		}
 	}
 
@@ -116,7 +118,7 @@ public class AdminController {
 			} catch (ProductIDNotFoundException e) {
 				Map<String, String> map = new HashMap<>();
 				map.put("error", e.getMessage());
-				return ResponseEntity.status(404).body(map);
+				return ResponseEntity.status(200).body(map);
 			}
 	    }
 }
