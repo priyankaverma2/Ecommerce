@@ -138,3 +138,12 @@ CREATE TABLE cart (
     FOREIGN KEY (product_id_ref) REFERENCES products(product_id)
 )AUTO_INCREMENT=3000;
 
+INSERT INTO products (name, quantity, description, amount, status, image_url, category)
+VALUES
+    ('Pen', 100, 'Blue ink ballpoint pen', 100.00, 1, 'https://png.pngtree.com/png-vector/20210507/ourmid/pngtree-business-equipment-commercial-pen-png-image_3256793.jpg', 'Stationery'),
+    ('Bottle', 50, '500ml water bottle', 250.00, 1, 'https://png.pngtree.com/png-clipart/20210309/original/pngtree-3d-metalic-water-bottle-vector-png-image_5884795.jpg', 'Drinkware'),
+    ('Notebook', 200, 'A5 ruled notebook', 174.50, 1, 'https://png.pngtree.com/png-vector/20210511/ourmid/pngtree-notebook-business-writing-books-png-image_3265895.jpg', 'Stationery'),
+    ('Pencil', 150, 'HB graphite pencil', 14.50, 1, 'https://png.pngtree.com/png-clipart/20190927/ourmid/pngtree-vector-psd-hd-color-pencil-png-image_1746898.jpg', 'Stationery'),
+    ('Coffee Mug', 80, 'Ceramic coffee mug', 359.20, 1, 'https://png.pngtree.com/png-clipart/20200727/original/pngtree-coffee-mug-mockup-design-template-png-image_5442616.jpg', 'Drinkware'),
+    ('Highlighter', 120, 'Yellow highlighter marker', 179.28, 1, 'https://png.pngtree.com/png-vector/20220917/ourmid/pngtree-school-supplies-highlighter-vector-png-image_6181282.png', 'Stationery');
+
