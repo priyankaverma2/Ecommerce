@@ -1,16 +1,15 @@
 package com.npci.entity;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 @Entity
 @Table(name = "admin")
-@Data
 public class AdminEntity {
 
 	@Column(name = "admin_id")
@@ -22,10 +21,25 @@ public class AdminEntity {
 	private String email;
 	
 	@Column(name = "name")
-	private int name;
+	private String name;
 	
 	@Column(name = "password")
 	private String password;
+
+
+	public AdminEntity(int admin_id, String email, String name, String password) {
+		super();
+		this.admin_id = admin_id;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+
+	public AdminEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public int getAdmin_id() {
 		return admin_id;
@@ -43,11 +57,13 @@ public class AdminEntity {
 		this.email = email;
 	}
 
-	public int getName() {
+
+	public String getName() {
 		return name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
+
 		this.name = name;
 	}
 
@@ -59,24 +75,11 @@ public class AdminEntity {
 		this.password = password;
 	}
 
-	public AdminEntity(int admin_id, String email, int name, String password) {
-		super();
-		this.admin_id = admin_id;
-		this.email = email;
-		this.name = name;
-		this.password = password;
-	}
-
-	public AdminEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public String toString() {
 		return "AdminEntity [admin_id=" + admin_id + ", email=" + email + ", name=" + name + ", password=" + password
 				+ "]";
 	}
-	
+
 	
 }

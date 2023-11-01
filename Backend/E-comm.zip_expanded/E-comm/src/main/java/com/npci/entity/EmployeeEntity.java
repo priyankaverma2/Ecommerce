@@ -1,15 +1,15 @@
 package com.npci.entity;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
-@Entity
-@Table(name = "employee")
+
+@Table(name ="employee")
 
 public class EmployeeEntity {
 
@@ -26,6 +26,20 @@ public class EmployeeEntity {
 	
 	@Column(name = "password")
 	private String password;
+
+
+	public EmployeeEntity(int employee_id, String email, String name, String password) {
+		super();
+		this.employee_id = employee_id;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+
+	public EmployeeEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getEmployee_id() {
 		return employee_id;
@@ -59,25 +73,12 @@ public class EmployeeEntity {
 		this.password = password;
 	}
 
-	public EmployeeEntity(int employee_id, String email, String name, String password) {
-		super();
-		this.employee_id = employee_id;
-		this.email = email;
-		this.name = name;
-		this.password = password;
-	}
-
-	public EmployeeEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public String toString() {
 		return "EmployeeEntity [employee_id=" + employee_id + ", email=" + email + ", name=" + name + ", password="
 				+ password + "]";
 	}
-	
+
 	
 	
 }

@@ -1,6 +1,6 @@
 package com.npci.entity;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
+
 
 @Entity
 @Table(name = "login_logs")
@@ -32,6 +32,7 @@ public class LoginLogsEntity {
 	
 	@Column(name = "time_stamp")
 	private LocalDateTime time_stamp;
+
 
 	public int getLog_id() {
 		return log_id;
@@ -65,7 +66,6 @@ public class LoginLogsEntity {
 		this.role_id = role_id;
 	}
 
-    
 
 	public LocalDateTime getTime_stamp() {
 		return time_stamp;
@@ -74,6 +74,7 @@ public class LoginLogsEntity {
 	public void setTime_stamp(LocalDateTime time_stamp) {
 		this.time_stamp = time_stamp;
 	}
+
 
   
 
@@ -91,12 +92,13 @@ public class LoginLogsEntity {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	@Override
 	public String toString() {
 		return "LoginLogsEntity [log_id=" + log_id + ", desc=" + desc + ", role=" + role + ", role_id=" + role_id
 				+ ", time_stamp=" + time_stamp + "]";
 	}
 	
-	
+
 	
 }

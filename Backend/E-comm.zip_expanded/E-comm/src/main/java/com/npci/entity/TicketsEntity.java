@@ -1,5 +1,7 @@
 package com.npci.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +16,6 @@ import lombok.Data;
 
 @Entity
 @Table(name = "tickets")
-@Data
 public class TicketsEntity {
 
 	@Column(name = "ticket_id")
@@ -23,13 +24,15 @@ public class TicketsEntity {
 	private int ticket_id;
 	
 	@Column(name = "time_stamp")
-	private String time_stamp;
+	private LocalDateTime time_stamp;
 	
 	@Column(name = "description")
-	private int description;
+
+	private String desc;
+
 	
 	@Column(name = "status")
-	private String status;
+	private int status;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id_ref")
@@ -41,15 +44,18 @@ public class TicketsEntity {
 
 	public TicketsEntity() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public TicketsEntity(int ticket_id, String time_stamp, int description, String status, UserEntity user_id_ref,
+	public TicketsEntity(int ticket_id, LocalDateTime time_stamp, String desc, int status, UserEntity user_id_ref,
+
 			EmployeeEntity approved_by_ref) {
 		super();
 		this.ticket_id = ticket_id;
 		this.time_stamp = time_stamp;
-		this.description = description;
+
+		this.desc = desc;
+
 		this.status = status;
 		this.user_id_ref = user_id_ref;
 		this.approved_by_ref = approved_by_ref;
@@ -63,29 +69,28 @@ public class TicketsEntity {
 		this.ticket_id = ticket_id;
 	}
 
-	public String getTime_stamp() {
+	public LocalDateTime getTime_stamp() {
 		return time_stamp;
 	}
 
-	public void setTime_stamp(String time_stamp) {
+	public void setTime_stamp(LocalDateTime time_stamp) {
 		this.time_stamp = time_stamp;
 	}
 
-	
-
-	public int getDescription() {
-		return description;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setDescription(int description) {
-		this.description = description;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
+
 		this.status = status;
 	}
 
@@ -104,9 +109,13 @@ public class TicketsEntity {
 	public void setApproved_by_ref(EmployeeEntity approved_by_ref) {
 		this.approved_by_ref = approved_by_ref;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "TicketsEntity [ticket_id=" + ticket_id + ", time_stamp=" + time_stamp + ", desc=" + desc + ", status="
+				+ status + ", user_id_ref=" + user_id_ref + ", approved_by_ref=" + approved_by_ref + "]";
+	}
+
 	
 	
 

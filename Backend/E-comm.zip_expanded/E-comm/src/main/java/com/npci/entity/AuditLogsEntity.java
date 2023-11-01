@@ -1,6 +1,7 @@
 package com.npci.entity;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,11 +9,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
+
 
 @Entity
 @Table(name = "audit_logs")
-@Data
+
 public class AuditLogsEntity {
 
 	@Column(name = "audit_log_id")
@@ -20,7 +21,7 @@ public class AuditLogsEntity {
 	@Id
 	private int audit_log_id;
 	
-	@Column(name = "desc")
+	@Column(name = "description")
 	private String desc;
 	
 	@Column(name = "role")
@@ -33,7 +34,24 @@ public class AuditLogsEntity {
 	private String endpoint;
 	
 	@Column(name = "time_stamp")
-	private LocalDate time_stamp;
+
+	private LocalDateTime time_stamp;
+
+	public AuditLogsEntity() {
+		super();
+	}
+
+	public AuditLogsEntity(int audit_log_id, String desc, String role, int role_id, String endpoint,
+			LocalDateTime time_stamp) {
+		super();
+		this.audit_log_id = audit_log_id;
+		this.desc = desc;
+		this.role = role;
+		this.role_id = role_id;
+		this.endpoint = endpoint;
+		this.time_stamp = time_stamp;
+	}
+
 
 	public int getAudit_log_id() {
 		return audit_log_id;
@@ -75,18 +93,15 @@ public class AuditLogsEntity {
 		this.endpoint = endpoint;
 	}
 
-	public LocalDate getTime_stamp() {
+
+	public LocalDateTime getTime_stamp() {
 		return time_stamp;
 	}
 
-	public void setTime_stamp(LocalDate time_stamp) {
+	public void setTime_stamp(LocalDateTime time_stamp) {
 		this.time_stamp = time_stamp;
 	}
 
-	public AuditLogsEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String toString() {
@@ -94,17 +109,6 @@ public class AuditLogsEntity {
 				+ role_id + ", endpoint=" + endpoint + ", time_stamp=" + time_stamp + "]";
 	}
 
-	public AuditLogsEntity(int audit_log_id, String desc, String role, int role_id, String endpoint,
-			LocalDate time_stamp) {
-		super();
-		this.audit_log_id = audit_log_id;
-		this.desc = desc;
-		this.role = role;
-		this.role_id = role_id;
-		this.endpoint = endpoint;
-		this.time_stamp = time_stamp;
-	}
-	
 	
 	
 }

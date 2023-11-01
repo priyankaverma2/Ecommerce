@@ -14,7 +14,6 @@ import lombok.Data;
 
 @Entity
 @Table(name = "exceptions")
-@Data
 public class ExceptionsEntity {
 
 	
@@ -26,11 +25,13 @@ public class ExceptionsEntity {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "description")
+
+	@Column(name = "description ")
+
 	private String desc;
 	
 	@Column(name = "role")
-	private int role;
+	private String role;
 	
 	@Column(name = "role_id")
 	private int role_id;
@@ -40,6 +41,24 @@ public class ExceptionsEntity {
 	
 	@Column(name = "time_stamp")
 	private LocalDateTime time_stamp;
+
+
+	public ExceptionsEntity() {
+		super();
+	}
+
+	public ExceptionsEntity(int exception_id, String name, String desc, String role, int role_id, String endpoint,
+			LocalDateTime time_stamp) {
+		super();
+		this.exception_id = exception_id;
+		this.name = name;
+		this.desc = desc;
+		this.role = role;
+		this.role_id = role_id;
+		this.endpoint = endpoint;
+		this.time_stamp = time_stamp;
+	}
+
 
 	public int getException_id() {
 		return exception_id;
@@ -65,11 +84,12 @@ public class ExceptionsEntity {
 		this.desc = desc;
 	}
 
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(String role) {
+
 		this.role = role;
 	}
 
@@ -89,8 +109,6 @@ public class ExceptionsEntity {
 		this.endpoint = endpoint;
 	}
 
-    
-
 	public LocalDateTime getTime_stamp() {
 		return time_stamp;
 	}
@@ -99,31 +117,13 @@ public class ExceptionsEntity {
 		this.time_stamp = time_stamp;
 	}
 
-    
-	public ExceptionsEntity(int exception_id, String name, String desc, int role, int role_id, String endpoint,
-			LocalDateTime time_stamp) {
-		super();
-		this.exception_id = exception_id;
-		this.name = name;
-		this.desc = desc;
-		this.role = role;
-		this.role_id = role_id;
-		this.endpoint = endpoint;
-		this.time_stamp = time_stamp;
-	}
-
-	public ExceptionsEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String toString() {
 		return "ExceptionsEntity [exception_id=" + exception_id + ", name=" + name + ", desc=" + desc + ", role=" + role
 				+ ", role_id=" + role_id + ", endpoint=" + endpoint + ", time_stamp=" + time_stamp + "]";
 	}
-	
-	
+
 	
 	
 }

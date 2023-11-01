@@ -1,6 +1,7 @@
 package com.npci.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,8 +19,5 @@ public interface TicketsDao extends JpaRepository<TicketsEntity, Integer> {
     @Transactional
 	@Query("UPDATE TicketsEntity a SET a.status = 'True' WHERE a.ticket_id = ?1")
 	public TicketsEntity updateTicketStatus(int ticketId);
-
-	
-	
 
 }

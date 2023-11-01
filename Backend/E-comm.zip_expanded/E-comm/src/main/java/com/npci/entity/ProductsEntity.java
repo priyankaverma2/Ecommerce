@@ -2,16 +2,15 @@ package com.npci.entity;
 
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 @Entity
 @Table(name = "products")
-@Data
 public class ProductsEntity {
 
 	@Column(name = "product_id")
@@ -23,16 +22,18 @@ public class ProductsEntity {
 	private String name;
 	
 	@Column(name = "quantity")
-	private Integer quantity;
+
+	private int quantity;
 	
 	@Column(name = "description")
-	private String desc;
+	private String description;
+
 	
 	@Column(name = "amount")
-	private String amount;
+	private double amount;
 	
 	@Column(name = "status")
-	private int status;
+	private boolean status;
 	
 	@Column(name = "image_url")
 	private String image_url;
@@ -120,6 +121,3 @@ public class ProductsEntity {
 
 	
 	
-	
-	
-}
